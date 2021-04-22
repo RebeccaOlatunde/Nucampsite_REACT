@@ -111,7 +111,7 @@ handleBlur = (field) => () => {
                             <FormGroup row>
                                 <Label htmlFor="firstName" md={2}>First Name</Label>
                                 <Col md={10}>
-                                    <Input type="text" id="firstName" name="firstName"
+                                        <Input type="text" id="firstName" name="firstName"
                                         placeholder="First Name"
                                         value={this.state.firstName}
                                         invalid={errors.firstName}
@@ -125,7 +125,10 @@ handleBlur = (field) => () => {
                                     <Input type="text" id="lastName" name="lastName"
                                         placeholder="Last Name"
                                         value={this.state.lastName}
+                                        invalid={errors.lastName}
+                                        onBlur={this.handleBlur("lastName")}
                                         onChange={this.handleInputChange} />
+                                        <FormFeedback>{errors.lastName}</FormFeedback>
                                 </Col>                        
                             </FormGroup>
                             <FormGroup row>
@@ -139,51 +142,32 @@ handleBlur = (field) => () => {
                                     onChange={this.handleInputChange} />
                                 <FormFeedback>{errors.firstName}</FormFeedback>
                             </Col>
-                        </FormGroup>
-                        <FormGroup row>
-                            <Label htmlFor="lastName" md={2}>Last Name</Label>
-                            <Col md={10}>
-                                <Input type="text" id="lastName" name="lastName"
-                                    placeholder="Last Name"
-                                    value={this.state.lastName}
-                                    invalid={errors.lastName}
-                                    onBlur={this.handleBlur("lastName")}
-                                    onChange={this.handleInputChange} />
-                                <FormFeedback>{errors.lastName}</FormFeedback>
-                            </Col>
-                        </FormGroup>
-                        <FormGroup row>
-                            <Label htmlFor="phoneNum" md={2}>Phone</Label>
-                            <Col md={10}>
-                                <Input type="tel" id="phoneNum" name="phoneNum"
+                         </FormGroup>
+                         <FormGroup row>
+                              <Label htmlFor="phoneNum" md={2}>Phone</Label>
+                             <Col md={10}>
+                                   <Input type="tel" id="phoneNum" name="phoneNum"
                                     placeholder="Phone number"
                                     value={this.state.phoneNum}
                                     invalid={errors.phoneNum}
                                     onBlur={this.handleBlur("phoneNum")}
                                     onChange={this.handleInputChange} />
-                                <FormFeedback>{errors.phoneNum}</FormFeedback>
-                            </Col>
-                        </FormGroup>
-                        <FormGroup row>
-                            <Label htmlFor="email" md={2}>Email</Label>
-                            <Col md={10}>
-                                <Input type="email" id="email" name="email"
-                                    placeholder="Email"
-                                    value={this.state.email}
-                                    invalid={errors.email}
-                                    onBlur={this.handleBlur("email")}
-                                    onChange={this.handleInputChange} />
-                                <FormFeedback>{errors.email}</FormFeedback>
-                            </Col>
-                        </FormGroup>
-                            <FormGroup row>
-                                <Col md={{size: 10, offset: 2}}>
-                                    <Button type="submit" color="primary">
-                                        Send Feedback
-                                    </Button>
-                                </Col>
-                            </FormGroup>
-                        </Form>
+                                   <FormFeedback>{errors.phoneNum}</FormFeedback>
+                             </Col>
+                         </FormGroup>
+                         <FormGroup row>
+                              <Label htmlFor="email" md={2}>Email</Label>
+                              <Col md={10}>
+                                   <Input type="email" id="email" name="email"
+                                       placeholder="Email"
+                                       value={this.state.email}
+                                       invalid={errors.email}
+                                       onBlur={this.handleBlur("email")}
+                                       onChange={this.handleInputChange} />
+                                 <FormFeedback>{errors.email}</FormFeedback>
+                             </Col>
+                         </FormGroup>
+                      </Form>
                     </div>
                 </div>
          </div>
