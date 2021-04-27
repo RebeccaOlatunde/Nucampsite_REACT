@@ -29,13 +29,18 @@ class CommentForm extends React.Component {
         console.log('Current state is: ' + JSON.stringify(values));
         alert('Current state is: ' + JSON.stringify(values));
     }
+
+    handleSubmit(values) {
+      this.toggleModal();
+      this.props.addComment(this.props.campsiteId, values.rating, values.author, values.text);
+  }
 ​
-    render(){
-        return(
-            <React.Fragment>
-            <Button outline onClick={this.toggleModal}>
-            <i className='fa fa-pencil fa-lg'/> Submit Comment
-            </Button>
+  render(){
+    return(
+      <React.Fragment>
+        <Button outline onClick={this.toggleModal}>
+             <i className='fa fa-pencil fa-lg'/> Submit Comment
+        </Button>
 ​
             <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
             <ModalHeader toggle={this.toggleModal}>Submit Comment</ModalHeader>
@@ -69,13 +74,13 @@ class CommentForm extends React.Component {
                                 required: 'Required',
                                 minLength: 'Must be at least 2 characters.',
                                 maxLength: 'Must be at most 15 characters'
-                    }}
+                               }}
                         />
                 </div>
                 <div className="form-group">
                     <Label htmlFor="text">Text</Label>
-                        <Control.textarea className="form-control" model='.text' id="text" name="text">
-                            
+                        <Control.textarea className="form-control" model='. 
+                             text' id="text" name="text">
                         </Control.textarea>
                 </div>
                 <Button type='submit' value='submit' color='primary'>Submit</Button>
@@ -85,24 +90,24 @@ class CommentForm extends React.Component {
             </React.Fragment>
         )
     };
-}
+ }
 ​
 ​
-   function RenderCampsite({campsite}){
-        return(
-            <div className = 'col-md-5 col-m1'>
-                    <Card>
-                    <CardImg top src={campsite.image} alt={campsite.name} />
-                        <CardBody>
-                            <CardText>{campsite.description}</CardText>
-                        </CardBody>
-                    </Card>
-            </div> 
-        )
-    }
+  function RenderCampsite({campsite}){
+    return(
+      <div className = 'col-md-5 col-m1'>
+         <Card>
+           <CardImg top src={campsite.image} alt={campsite.name} />
+              <CardBody>
+                <CardText>{campsite.description}</CardText>
+              </CardBody>
+            </Card>
+      </div> 
+    )
+  }
 ​
-   function RenderComments({comments}){
-        if(comments) {
+  function RenderComments({comments, addComment, campsiteId}) {
+      if(comments) {
             return <div class='col-md-5 col-m1'>
                 <h4>Comments</h4>
                 {comments.map(comment => {
@@ -134,8 +139,11 @@ class CommentForm extends React.Component {
                     </div>
                 </div>
                 <div className="row"> 
-                    <RenderCampsite campsite = {props.campsite}/>
-                    <RenderComments comments = {props.comments}/>
+                <RenderComments 
+                    comments={props.comments}
+                    addComment={props.addComment}
+                    campsiteId={props.campsite.id}
+                />
                 </div>
             </div>
         );
@@ -283,6 +291,6 @@ export default CampsiteInfo;
 //         );
 //     }
 //     return <div />;
-// }
+// 
 
 // export default CampsiteInfo;
