@@ -1,11 +1,11 @@
 import React from 'react';
-import {Modal, ModalHeader, ModalBody, Form, Label, Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem, Button} from 'reactstrap';
+import {Modal, ModalHeader, ModalBody, Form, Label, Card, CardImg,  CardText, CardBody, Breadcrumb, BreadcrumbItem, Button} from 'reactstrap';
 import {Link} from 'react-router-dom';
+import { Loading } from './LoadingComponent';
 import { LocalForm, Control, Errors } from 'react-redux-form';
 
-const required = val => val && val.length;
-const maxLength = len => val => !val || (val.length <= len);
-const minLength = len => val => val && (val.length>= len);
+const maxLength = len => val => !(val) || (val.length <= len);
+const minLength = len => val => val && (val.length >= len);
 ​
 
 class CommentForm extends React.Component {
@@ -92,7 +92,6 @@ class CommentForm extends React.Component {
     };
  }
 ​
-​
   function RenderCampsite({campsite}){
     return(
       <div className = 'col-md-5 col-m1'>
@@ -125,6 +124,26 @@ class CommentForm extends React.Component {
     }
 ​
     function CampsiteInfo(props) {
+        if (props.isLoading) {
+            return (
+                <div className="container">
+                    <div className="row">
+                        <Loading />
+                    </div>
+                </div>
+            );
+        }
+        if (props.errMess) {
+            return (
+                <div className="container">
+                    <div className="row">
+                        <div className="col">
+                            <h4>{props.errMess}</h4>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
       if (props.campsite) {
         return (
             <div className='container'>
