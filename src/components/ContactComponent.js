@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Breadcrumb, BreadcrumbItem,
     Button, Label, Col, Row } from 'reactstrap';
 import {Link} from 'react-router-dom';
-import { Control, LocalForm, Errors } from 'react-redux-form';
+import { Control, Form, Errors } from 'react-redux-form';
 
 
 const required = val => val && val.length;
@@ -34,10 +34,10 @@ class Contact extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
 }
 
-
 handleSubmit(values) {
-    console.log("Current state is: " + JSON.stringify(values));
-    alert("Current state is: " + JSON.stringify(values));
+    console.log('Current State is: ' + JSON.stringify(values));
+    alert('Current State is: ' + JSON.stringify(values));
+    this.props.resetFeedbackForm();
 }
 
  render() {
@@ -75,7 +75,7 @@ handleSubmit(values) {
                     </div>
                     <div className="col-md-10">
 
-                    <LocalForm onSubmit={values => this.handleSubmit(values)}>
+                    <Form model="feedbackForm" onSubmit={values => this.handleSubmit(values)}>       
                        <Row className="form-group">
                            <Label htmlFor="firstName" md={2}>First Name</Label>
                            <Col md={10}>
@@ -86,8 +86,7 @@ handleSubmit(values) {
                                required, 
                                minLength: minLength(2),
                                maxLength: maxLength(15)
-                           }}
-                       />
+                           }}/>
                           <Errors
                            className="text-danger"
                            model=".firstName"
@@ -98,10 +97,10 @@ handleSubmit(values) {
                                minLength: 'Must be at least 2 characters',
                                maxLength: 'Must be 15 characters or less'
                            }}
-                       />
+                       />  
                    </Col>
-               </Row>
-               <Row className="form-group">
+                 </Row>
+                 <Row className="form-group">
                    <Label htmlFor="lastName" md={2}>Last Name</Label>
                    <Col md={10}>
                        <Control.text model=".lastName" id="lastName" name="lastName"
@@ -125,8 +124,8 @@ handleSubmit(values) {
                            }}
                        />
                    </Col>
-               </Row>
-               <Row className="form-group">
+                 </Row>
+                 <Row className="form-group">
                    <Label htmlFor="phoneNum" md={2}>Phone</Label>
                    <Col md={10}>
                        <Control.text model=".phoneNum" id="phoneNum" name="phoneNum"
@@ -152,8 +151,8 @@ handleSubmit(values) {
                            }}
                        />
                    </Col>
-               </Row>
-               <Row className="form-group">
+                  </Row>
+                 <Row className="form-group">
                    <Label htmlFor="email" md={2}>Email</Label>
                    <Col md={10}>
                        <Control.text model=".email" id="email" name="email"
@@ -175,8 +174,8 @@ handleSubmit(values) {
                            }}
                        />
                    </Col>
-               </Row>    
-                 </LocalForm>
+                 </Row>    
+                </Form>
                         
                     </div>
                 </div>
