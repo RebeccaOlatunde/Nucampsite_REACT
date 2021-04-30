@@ -32,9 +32,9 @@ class CommentForm extends React.Component {
     }
 
     handleSubmit(values) {
-      this.toggleModal();
-      this.props.addComment(this.props.campsiteId, values.rating, values.author, values.text);
-  }
+        this.toggleModal();
+        this.props.postComment(this.props.campsiteId, values.rating, values.author, values.text);
+    }
 ​
   render(){
     return(
@@ -106,8 +106,8 @@ class CommentForm extends React.Component {
     )
   }
 ​
-  function RenderComments({comments, addComment, campsiteId}) {
-      if(comments) {
+function RenderComments({comments, postComment, campsiteId}) {      
+       if(comments) {
             return <div class='col-md-5 col-m1'>
                 <h4>Comments</h4>
                 {comments.map(comment => {
@@ -119,7 +119,7 @@ class CommentForm extends React.Component {
                         </p>
                     </div>)
                 })}
-            <CommentForm />
+            <CommentForm campsiteId={campsiteId} postComment={postComment}/>
             </div>
         }
     }
@@ -159,11 +159,11 @@ class CommentForm extends React.Component {
                     </div>
                 </div>
                 <div className="row"> 
-                <RenderComments 
-                    comments={props.comments}
-                    addComment={props.addComment}
-                    campsiteId={props.campsite.id}
-                />
+                  <RenderComments
+                        comments={props.comments}
+                        postComment={props.postComment}
+                        campsiteId={props.campsite.id}
+                    />                 
                 </div>
             </div>
         );
